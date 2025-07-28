@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import './Quiz.css';
-import Footer from '../components/Footer'
+
 const Quiz = () => {
   const [categories, setCategories] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [questions, setQuestions] = useState([]);
   const [currentQIndex, setCurrentQIndex] = useState(0);
@@ -20,14 +22,12 @@ const Quiz = () => {
       .catch(console.error);
   }, []);
 
-
   useEffect(() => {
     if (!selectedCategory) return;
 
     fetch(`https://opentdb.com/api.php?amount=10&category=${selectedCategory}&type=multiple`)
       .then(res => res.json())
       .then(data => {
-
         const formatted = data.results.map(q => {
           const answers = [...q.incorrect_answers, q.correct_answer].sort(() => Math.random() - 0.5);
           return { ...q, answers };
@@ -67,7 +67,6 @@ const Quiz = () => {
     const correct = answer === questions[currentQIndex].correct_answer;
     if (correct) setScore(prev => prev + 1);
 
-    // Short delay before moving to next question to show feedback
     setTimeout(() => {
       handleNextQuestion(true);
     }, 1500);
@@ -84,32 +83,57 @@ const Quiz = () => {
   };
 
   if (!selectedCategory) {
+    const filteredCategories = categories.filter(cat =>
+      cat.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
       <>
         <Navbar />
         <div className="quiz-container">
           <h2>Select a Quiz Category</h2>
+
+          <input
+            type="text"
+            placeholder="Search categories..."
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+            className="search-bar"
+            style={{
+              padding: '10px',
+              marginBottom: '10px',
+              width: '100%',
+              maxWidth: '400px',
+              border: '1px solid #ccc',
+              borderRadius: '4px'
+            }}
+          />
+
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="category-select"
           >
             <option value="">--Choose Category--</option>
-            {categories.map(cat => (
+            {filteredCategories.map(cat => (
               <option key={cat.id} value={cat.id}>{cat.name}</option>
             ))}
           </select>
         </div>
+        <Footer />
       </>
     );
   }
 
-  if (questions.length === 0) return (
-    <>
-      <Navbar />
-      <div className="quiz-container"><p>Loading Questions...</p></div>
-    </>
-  );
+  if (questions.length === 0) {
+    return (
+      <>
+        <Navbar />
+        <div className="quiz-container"><p>Loading Questions...</p></div>
+        <Footer />
+      </>
+    );
+  }
 
   if (showScore) {
     return (
@@ -119,8 +143,8 @@ const Quiz = () => {
           <h2>Quiz Completed!</h2>
           <p>Your Score: {score} / {questions.length}</p>
           <button onClick={() => setSelectedCategory('')} className="restart-btn">Choose Another Quiz</button>
-          {/* You can add a link to leaderboard here */}
         </div>
+        <Footer />
       </>
     );
   }

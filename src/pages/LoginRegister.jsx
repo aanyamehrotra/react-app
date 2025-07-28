@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../firebase' // ✅ `auth` is already initialized in firebase.js
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import './LoginRegister.css'
@@ -13,15 +15,28 @@ const LoginRegister = () => {
   })
 
   const handleChange = e => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    if (isLogin) {
-      alert(`Logging in with email: ${formData.email}`)
-    } else {
-      alert(`Signing up ${formData.name} with email: ${formData.email}`)
+    const { email, password } = formData
+
+    try {
+      if (isLogin) {
+        const userCred = await signInWithEmailAndPassword(auth, email, password)
+        alert(`Logged in as ${userCred.user.email}`)
+        console.log(userCred.user)
+      } else {
+        const userCred = await createUserWithEmailAndPassword(auth, email, password)
+        alert(`Account created for ${userCred.user.email}`)
+        console.log(userCred.user)
+      }
+    } catch (error) {
+      alert(`Error: ${error.message}`)
     }
   }
 

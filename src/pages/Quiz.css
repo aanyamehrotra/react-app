@@ -22,6 +22,14 @@
     color: #111827;
     font-weight: 700; /* Bolder text for visibility */
   }
+  .search-bar {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
   
   .timer {
     background: #7F56D9;
