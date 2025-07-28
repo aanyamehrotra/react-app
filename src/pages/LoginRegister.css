@@ -1,0 +1,143 @@
+/* Container */
+.auth-container {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f0f4ff, #d9e4ff);
+    padding: 2rem 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Card */
+  .auth-card {
+    background: #ffffff;
+    padding: 3rem 3rem 2.5rem;
+    border-radius: 24px;
+    width: 400px;
+    max-width: 100%;
+    box-shadow:
+      0 8px 16px rgba(100, 100, 150, 0.1),
+      0 4px 6px rgba(100, 100, 150, 0.06);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .auth-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Heading */
+  .auth-card h2 {
+    margin-bottom: 2.2rem;
+    font-weight: 700;
+    color: #334155;
+    letter-spacing: 0.03em;
+  }
+  
+  /* Form groups */
+  .form-group {
+    text-align: left;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: #475569;
+    font-size: 0.95rem;
+  }
+  
+  /* Inputs */
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem 1.2rem;
+    font-size: 1rem;
+    border: 1.6px solid #cbd5e1;
+    border-radius: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline-offset: 2px;
+    font-family: inherit;
+    color: #334155;
+    background-color: #f9fbff;
+  }
+  
+  .form-group input::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+  }
+  
+  .form-group input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 8px #6366f1aa;
+    outline: none;
+  }
+  
+  /* Submit button */
+  .auth-btn {
+    width: 100%;
+    background: linear-gradient(90deg, #6366f1, #4f46e5);
+    border: none;
+    color: white;
+    padding: 0.85rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow:
+      0 6px 14px #6366f1cc;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+  }
+  
+  .auth-btn:hover {
+    background: linear-gradient(90deg, #4f46e5, #4338ca);
+    box-shadow:
+      0 8px 20px #4f46e5dd;
+  }
+  
+  /* Toggle text */
+  .toggle-text {
+    margin-top: 1.7rem;
+    font-size: 1rem;
+    color: #64748b;
+    user-select: none;
+  }
+  
+  /* Toggle button */
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: #6366f1;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 0.4rem;
+    font-size: 1rem;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+  
+  .toggle-btn:hover {
+    color: #4f46e5;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .auth-card {
+      padding: 2.5rem 2rem 2rem;
+      width: 100%;
+      border-radius: 20px;
+    }
+  
+    .auth-btn {
+      font-size: 1.1rem;
+      padding: 0.75rem;
+    }
+  
+    .toggle-text,
+    .toggle-btn {
+      font-size: 0.95rem;
+    }
+  }
+  

@@ -1,0 +1,109 @@
+.leaderboard-container {
+    max-width: 480px;
+    margin: 3rem auto;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333333;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .leaderboard-container:hover {
+    box-shadow: 0 10px 30px rgba(0, 128, 255, 0.15);
+  }
+  
+  .leaderboard-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #007ACC; /* Modern electric blue accent */
+  }
+  
+  .leaderboard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    margin-bottom: 14px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    font-weight: 600;
+    cursor: default;
+    transition: background-color 0.25s ease;
+  }
+  
+  .leaderboard-item:hover {
+    background-color: #e6f0ff;
+  }
+  
+  .rank {
+    width: 28px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #007ACC;
+    text-align: center;
+  }
+  
+  .name {
+    flex-grow: 1;
+    margin-left: 20px;
+    font-size: 1.1rem;
+    color: #222222;
+  }
+  
+  .score {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #007ACC;
+  }
+  
+  /* Medal styles */
+  .gold {
+    border-left: 5px solid #FFD700;
+    background-color: #fffbea;
+  }
+  
+  .silver {
+    border-left: 5px solid #C0C0C0;
+    background-color: #f5f5f5;
+  }
+  
+  .bronze {
+    border-left: 5px solid #CD7F32;
+    background-color: #faf5f0;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .leaderboard-container {
+      margin: 2rem 1rem;
+      padding: 1.5rem 1rem;
+    }
+  
+    .leaderboard-item {
+      padding: 12px 16px;
+    }
+  
+    .rank, .score, .name {
+      font-size: 1rem;
+    }
+  
+    .name {
+      margin-left: 14px;
+    }
+  
+    .leaderboard-container h1 {
+      font-size: 1.6rem;
+    }
+  }
+  
